@@ -20,6 +20,8 @@ namespace API.Models
 
         public int Price{get;set;}
 
+        public string Image{get; set;}
+
         // public byte[] Image{get; set;}
     }
 }
