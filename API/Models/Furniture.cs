@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
 namespace API.Models
@@ -9,10 +10,16 @@ namespace API.Models
     {
         public int Id{get; set;}
 
-        public double Age{get; set;}
+        public string Type{get; set;}
 
-        public DateTime DateTimeArchive{get; set;}
+        public string Quality{get;set;}
 
-        public int ActiveBids{get; set;} //ActiveBids as an object or array or both?
+        public string City{get;set;}
+
+        public bool Sold{get; set;}
+
+        public int Price{get;set;}
+
+        // public byte[] Image{get; set;}
     }
 }
