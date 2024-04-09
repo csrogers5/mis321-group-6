@@ -119,7 +119,7 @@
           }
         }
       },
-      "MessagePackAnalyzer/2.1.152": {
+      "MessagePackAnalyzer/2.5.140": {
         "type": "package"
       },
       "Microsoft.AspNetCore.OpenApi/7.0.11": {
@@ -3511,17 +3511,16 @@
         "messagepack.annotations.nuspec"
       ]
     },
-    "MessagePackAnalyzer/2.1.152": {
-      "sha512": "uJhZlGMkXDaFYsH8V9S6o1EyvsUqB9mpU4DVBXNr0DXZVzZMhuLP1IkLj5xK3EKlaAcvkFkZv3eSvuz360wb3Q==",
+    "MessagePackAnalyzer/2.5.140": {
+      "sha512": "iFJI9n3QMYnCWz83hRD6/gAURXYedSd6Itijs6LeUYoxNFQE+xHmEG5bz3w8ymnbKKt62FEP3gldvHSiDSO7yg==",
       "type": "package",
-      "path": "messagepackanalyzer/2.1.152",
+      "path": "messagepackanalyzer/2.5.140",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "LICENSE",
         "analyzers/dotnet/MessagePackAnalyzer.dll",
-        "messagepackanalyzer.2.1.152.nupkg.sha512",
+        "messagepackanalyzer.2.5.140.nupkg.sha512",
         "messagepackanalyzer.nuspec",
         "tools/install.ps1",
         "tools/uninstall.ps1"
@@ -9876,6 +9875,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "MessagePackAnalyzer >= 2.5.140",
       "Microsoft.AspNetCore.OpenApi >= 7.0.11",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.0",
       "MySql.Data >= 8.3.0",
@@ -9883,19 +9883,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Caleb\\.nuget\\packages\\": {}
+    "C:\\Users\\roger\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Caleb\\Documents\\source\\spring24repos\\mis321-group-6\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\Caleb\\Documents\\source\\spring24repos\\mis321-group-6\\API\\API.csproj",
-      "packagesPath": "C:\\Users\\Caleb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Caleb\\Documents\\source\\spring24repos\\mis321-group-6\\API\\obj\\",
+      "projectPath": "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\roger\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Caleb\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\roger\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -9919,6 +9919,12 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "MessagePackAnalyzer": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[2.5.140, )"
+          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[7.0.11, )"
@@ -9955,7 +9961,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.407\\RuntimeIdentifierGraph.json"
       }
     }
   }
