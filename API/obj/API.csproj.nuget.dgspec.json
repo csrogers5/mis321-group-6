@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\api\\API.csproj": {}
+    "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\api\\API.csproj": {
+    "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\api\\API.csproj",
+        "projectUniqueName": "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\api\\API.csproj",
+        "projectPath": "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\API\\API.csproj",
         "packagesPath": "C:\\Users\\roger\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\api\\obj\\",
+        "outputPath": "C:\\Users\\roger\\source\\spring24repos\\mis321-group-6\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\roger\\AppData\\Roaming\\NuGet\\NuGet.Config"

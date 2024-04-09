@@ -30,9 +30,8 @@ namespace API.Database
                     allFurniture.Add(new Furniture()
                     {   
                         Id = rdr.GetInt32(0), Type = rdr.GetString(1), Quality = rdr.GetString(2),
-                        City = rdr.GetString(3), Sold = rdr.GetBoolean(4), Price = rdr.GetInt32(5)
-                        // ,
-                        // Image = rdr["furniture_image"] as byte[] 
+                        City = rdr.GetString(3), Sold = rdr.GetBoolean(4), Price = rdr.GetInt32(5),
+                        Image = rdr.GetString(6)
                     }); 
                 }
 
