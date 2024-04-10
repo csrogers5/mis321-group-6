@@ -23,10 +23,11 @@ namespace API.Controllers
         }
 
         // GET: api/furniture/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "GetFurniture")]
+        public Furniture Get(int id)
         {
-            return "value";
+            IGetFurniture readObject = new ReadFurnitureData();
+            return readObject.GetFurniture(id);
         }
 
         // POST: api/furniture

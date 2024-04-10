@@ -8,9 +8,9 @@ using MySql.Data.MySqlClient;
 
 namespace API.Database
 {
-    public class ReadFurnitureData : IGetAllFurniture, IGetFurniture
+    public class ReadOrderData : IGetAllOrders, IGetOrder
     {
-        public List<Furniture> GetAllFurniture()
+        public List<OrderForm> GetAllOrders()
         {
             try
             {
@@ -19,24 +19,22 @@ namespace API.Database
                 using MySqlConnection con = new MySqlConnection(cs); 
                 con.Open();
 
-                string stm = "select * from furniture"; 
+                string stm = "select * from orderform"; 
                 using var cmd = new MySqlCommand(stm, con); 
 
                 using MySqlDataReader rdr = cmd.ExecuteReader();
 
-                List<Furniture> allFurniture = new List<Furniture>(); 
+                List<OrderForm> allOrders = new List<OrderForm>(); 
                 while(rdr.Read()) 
                 {
-                    allFurniture.Add(new Furniture()
+                    allOrders.Add(new OrderForm()
                     {   
-                        Id = rdr.GetInt32(0), Type = rdr.GetString(1), Quality = rdr.GetString(2),
-                        City = rdr.GetString(3), Sold = rdr.GetBoolean(4), Price = rdr.GetInt32(5),
-                        Image = rdr.GetString(6)
+                        Id = rdr.GetInt32(0), Furniture_ID = rdr.GetInt32(1), Account_ID = rdr.GetInt32(2), PickupDate = rdr.GetDateTime(3)
                     }); 
                 }
 
                 System.Console.WriteLine("Retrieved Successfully");
-                return allFurniture;
+                return allOrders;
             }
             catch(Exception ex)
             {
@@ -45,7 +43,7 @@ namespace API.Database
             }
         }
 
-        public Furniture GetFurniture(int id)
+        public OrderForm GetOrder(int id)
         {
             try
             {
@@ -54,7 +52,7 @@ namespace API.Database
                 using MySqlConnection con = new MySqlConnection(cs); 
                 con.Open();
 
-                string stm = "select * from furniture where furniture_id = @id"; 
+                string stm = "select * from orderform where order_id = @id"; 
                 using var cmd = new MySqlCommand(stm, con); 
 
                 cmd.Parameters.AddWithValue("@id",id); 
@@ -67,10 +65,9 @@ namespace API.Database
 
                 System.Console.WriteLine("Retrieved Successfully");
 
-                return new Furniture()
+                return new OrderForm()
                 {
-                    Id = rdr.GetInt32(0), Type = rdr.GetString(1), City = rdr.GetString(2),
-                    Quality = rdr.GetString(3), Sold = rdr.GetBoolean(4), Price = rdr.GetInt32(5), Image = rdr.GetString(6)
+                   Id = rdr.GetInt32(0), Furniture_ID = rdr.GetInt32(1), Account_ID = rdr.GetInt32(2), PickupDate = rdr.GetDateTime(3)
                 };
             }
             catch
@@ -79,7 +76,5 @@ namespace API.Database
                 return null;
             }
         }
-
-       
     }
 }
