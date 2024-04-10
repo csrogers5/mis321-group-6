@@ -8,9 +8,10 @@ using MySql.Data.MySqlClient;
 
 namespace API.Database
 {
-    public class ReadFurnitureData : IGetAllFurniture, IGetFurniture
+    public class ReadAccountData : IGetAllAccounts, IGetAccount
     {
-        public List<Furniture> GetAllFurniture()
+
+        public List<Account> GetAllAccounts()
         {
             try
             {
@@ -19,24 +20,24 @@ namespace API.Database
                 using MySqlConnection con = new MySqlConnection(cs); 
                 con.Open();
 
-                string stm = "select * from furniture"; 
+                string stm = "select * from accounts"; 
                 using var cmd = new MySqlCommand(stm, con); 
 
                 using MySqlDataReader rdr = cmd.ExecuteReader();
 
-                List<Furniture> allFurniture = new List<Furniture>(); 
+                List<Account> allAccounts = new List<Account>(); 
                 while(rdr.Read()) 
                 {
-                    allFurniture.Add(new Furniture()
+                    allAccounts.Add(new Account()
                     {   
-                        Id = rdr.GetInt32(0), Type = rdr.GetString(1), Quality = rdr.GetString(2),
-                        City = rdr.GetString(3), Sold = rdr.GetBoolean(4), Price = rdr.GetInt32(5),
-                        Image = rdr.GetString(6)
+                        Id = rdr.GetInt32(0), Username = rdr.GetString(1), Password = rdr.GetString(2),
+                        Admin = rdr.GetBoolean(3), FName = rdr.GetString(4), LName = rdr.GetString(5),
+                        PhoneNumber = rdr.GetString(6), Location = rdr.GetString(7), Payment = rdr.GetString(8)
                     }); 
                 }
 
                 System.Console.WriteLine("Retrieved Successfully");
-                return allFurniture;
+                return allAccounts;
             }
             catch(Exception ex)
             {
@@ -45,19 +46,19 @@ namespace API.Database
             }
         }
 
-        public Furniture GetFurniture(int id)
+        public Account GetAccount(int id)
         {
-            try
+           try
             {
                 ConnectionString myConnection = new ConnectionString();
-                string cs = myConnection.cs; 
+                string cs = myConnection.cs;
                 using MySqlConnection con = new MySqlConnection(cs); 
                 con.Open();
 
-                string stm = "select * from furniture where furniture_id = @id"; 
+                string stm = "select * from accounts where account_id = @id"; 
                 using var cmd = new MySqlCommand(stm, con); 
 
-                cmd.Parameters.AddWithValue("@id",id); 
+                cmd.Parameters.AddWithValue("@id",id);
                 cmd.Prepare(); 
 
                 MySqlDataReader rdr = cmd.ExecuteReader();
@@ -67,10 +68,11 @@ namespace API.Database
 
                 System.Console.WriteLine("Retrieved Successfully");
 
-                return new Furniture()
+                return new Account()
                 {
-                    Id = rdr.GetInt32(0), Type = rdr.GetString(1), City = rdr.GetString(2),
-                    Quality = rdr.GetString(3), Sold = rdr.GetBoolean(4), Price = rdr.GetInt32(5), Image = rdr.GetString(6)
+                    Id = rdr.GetInt32(0), Username = rdr.GetString(1), Password = rdr.GetString(2),
+                    Admin = rdr.GetBoolean(3), FName = rdr.GetString(4), LName = rdr.GetString(5),
+                    PhoneNumber = rdr.GetString(6), Location = rdr.GetString(7), Payment = rdr.GetString(8)  
                 };
             }
             catch
@@ -80,6 +82,5 @@ namespace API.Database
             }
         }
 
-       
     }
 }

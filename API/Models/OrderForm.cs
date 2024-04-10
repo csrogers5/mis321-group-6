@@ -13,7 +13,7 @@ namespace API.Models
 
         public int Account_ID{get; set;}
 
-        public DateOnly PickupDate{get; set;}
+        public DateTime PickupDate{get; set;}
 
     }
 
