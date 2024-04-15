@@ -29,7 +29,8 @@ namespace API.Database
                 {
                     allOrders.Add(new OrderForm()
                     {   
-                        Id = rdr.GetInt32(0), Furniture_ID = rdr.GetInt32(1), Account_ID = rdr.GetInt32(2), PickupDate = rdr.GetDateTime(3)
+                        Id = rdr.GetInt32(0), Furniture_ID = rdr.GetInt32(1), Account_ID = rdr.GetInt32(2), 
+                        PickupDate = rdr.GetDateTime(3), Price = rdr.GetInt32(4)
                     }); 
                 }
 
@@ -67,7 +68,8 @@ namespace API.Database
 
                 return new OrderForm()
                 {
-                   Id = rdr.GetInt32(0), Furniture_ID = rdr.GetInt32(1), Account_ID = rdr.GetInt32(2), PickupDate = rdr.GetDateTime(3)
+                   Id = rdr.GetInt32(0), Furniture_ID = rdr.GetInt32(1), Account_ID = rdr.GetInt32(2), 
+                   PickupDate = rdr.GetDateTime(3), Price = rdr.GetInt32(4)
                 };
             }
             catch

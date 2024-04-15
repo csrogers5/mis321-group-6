@@ -22,6 +22,7 @@ namespace API.Models
 
         public string Image{get; set;}
 
-        // public byte[] Image{get; set;}
+        public int SellerId{get; set;}
+
     }
 }
