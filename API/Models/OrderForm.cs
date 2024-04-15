@@ -15,6 +15,8 @@ namespace API.Models
 
         public DateTime PickupDate{get; set;}
 
+        public int Price {get; set;}
+
     }
 
     // order_id INT AUTO_INCREMENT PRIMARY KEY,

@@ -31,7 +31,7 @@ namespace API.Database
                     {   
                         Id = rdr.GetInt32(0), Type = rdr.GetString(1), Quality = rdr.GetString(2),
                         City = rdr.GetString(3), Sold = rdr.GetBoolean(4), Price = rdr.GetInt32(5),
-                        Image = rdr.GetString(6)
+                        Image = rdr.GetString(6), SellerId = rdr.GetInt32(7)
                     }); 
                 }
 
@@ -70,7 +70,8 @@ namespace API.Database
                 return new Furniture()
                 {
                     Id = rdr.GetInt32(0), Type = rdr.GetString(1), City = rdr.GetString(2),
-                    Quality = rdr.GetString(3), Sold = rdr.GetBoolean(4), Price = rdr.GetInt32(5), Image = rdr.GetString(6)
+                    Quality = rdr.GetString(3), Sold = rdr.GetBoolean(4), Price = rdr.GetInt32(5),
+                    Image = rdr.GetString(6), SellerId = rdr.GetInt32(7)
                 };
             }
             catch
