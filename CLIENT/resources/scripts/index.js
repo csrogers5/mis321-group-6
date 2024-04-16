@@ -1,3 +1,45 @@
+let myAccounts;
+let myFurniture;
+let myOrderForms;
+const accountUrl = "http://localhost:5178/api/account"
+const furnitureUrl = "http://localhost:5178/api/furniture"
+const orderUrl = "http://localhost:5178/api/order"
+
+
+
+async function getAccountData()
+{
+    let response = await fetch(accountUrl)
+    myAccounts = await response.json()
+    console.log(myAccounts) // remove later
+}
+
+async function getFurnitureData()
+{
+    let response = await fetch(furnitureUrl)
+    myAccounts = await response.json()
+    console.log(myAccounts) // remove later
+}
+
+async function getOrderData()
+{
+    let response = await fetch(orderUrl)
+    myAccounts = await response.json()
+    console.log(myAccounts) // remove later
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// Page Routing //
 document.addEventListener('DOMContentLoaded', function() {
     wrapper.classList.add('active-popup');
 
