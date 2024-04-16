@@ -1,0 +1,13 @@
+.resize-image
+{
+    height: auto;
+    width: 200px;
+}
+
+.container {
+    display: flex;
+}
+.item {
+    /* Optional styling for the items */
+    margin-right: 10px;
+}
