@@ -30,9 +30,8 @@ namespace API.Database
                 {
                     allAccounts.Add(new Account()
                     {   
-                        Id = rdr.GetInt32(0), Username = rdr.GetString(1), Password = rdr.GetString(2),
-                        Admin = rdr.GetBoolean(3), FName = rdr.GetString(4), LName = rdr.GetString(5),
-                        PhoneNumber = rdr.GetString(6), Location = rdr.GetString(7), Payment = rdr.GetString(8)
+                        Id = rdr.GetInt32(0), Username = rdr.GetString(1), Email=rdr.GetString(2),
+                        Password = rdr.GetString(3), Admin = rdr.GetBoolean(4)
                     }); 
                 }
 
@@ -70,9 +69,8 @@ namespace API.Database
 
                 return new Account()
                 {
-                    Id = rdr.GetInt32(0), Username = rdr.GetString(1), Password = rdr.GetString(2),
-                    Admin = rdr.GetBoolean(3), FName = rdr.GetString(4), LName = rdr.GetString(5),
-                    PhoneNumber = rdr.GetString(6), Location = rdr.GetString(7), Payment = rdr.GetString(8)  
+                    Id = rdr.GetInt32(0), Username = rdr.GetString(1), Email=rdr.GetString(2),
+                    Password = rdr.GetString(3), Admin = rdr.GetBoolean(4)
                 };
             }
             catch

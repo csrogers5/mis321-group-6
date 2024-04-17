@@ -7,6 +7,7 @@ using API.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using API.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
 {
@@ -15,6 +16,7 @@ namespace API.Controllers
     public class accountController : ControllerBase
     {
         // GET: api/account
+        [EnableCors("OpenPolicy")]
         [HttpGet]
         public List<Account> Get()
         {
@@ -23,6 +25,7 @@ namespace API.Controllers
         }
 
         // GET: api/account/5
+        [EnableCors("OpenPolicy")]
         [HttpGet("{id}", Name = "GetAccount")]
         public Account Get(int id)
         {
@@ -31,18 +34,23 @@ namespace API.Controllers
         }
 
         // POST: api/account
+        [EnableCors("OpenPolicy")]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Account value)
         {
+            IPostAccount insertObject = new PostAccount();
+            insertObject.PostAccount(value);
         }
 
         // PUT: api/account/5
+        [EnableCors("OpenPolicy")]
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE: api/account/5
+        [EnableCors("OpenPolicy")]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

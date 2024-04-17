@@ -80,6 +80,7 @@ function handleBuyClick(id)
 async function handleOrderLoad()
 {
     await getTempFurnData()
+    await getAccountData()
     displayOrderForm()
 }
 
@@ -114,6 +115,44 @@ function displayOrderForm()
         </div>
     `
     document.getElementById('order').innerHTML = html
+}
+
+function postOrder()
+{
+    let buyerid = findBuyerId()
+    console.log(buyerid)
+    try 
+    {
+        fetch(orderUrl, {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                furnitureid: tempFurn.id,
+                buyerid: buyerid,
+                pickupdate: document.getElementById('datePicker').value,
+                price: tempFurn.price,
+                fname: document.getElementById('firstName').value,
+                lname: document.getElementById('lastName').value,
+                location: document.getElementById('pickupLocation').value,
+                phone: document.getElementById('phoneNumber').value
+            })
+        });
+        console.log("Account Post success")
+    } 
+    catch (error)
+    {
+        console.error('Error:', error);
+    }
+}
+
+function findBuyerId() 
+{
+    let storedEmail = localStorage.getItem('email');
+    let foundAccount = myAccounts.find(account => account.email === storedEmail);
+    return foundAccount ? foundAccount.id : null;
 }
 
 
