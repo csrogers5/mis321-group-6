@@ -33,38 +33,36 @@ async function getOrderData()
     console.log(myOrderForms) // remove later
 }
 
-function displayBuyTable()
-{
-    let html = ''
-    myFurniture.forEach((furniture) =>
-    {
-        if(furniture.sold === false)
-        {
-            html +=
-            `
-            <h1>Product Details</h1>
-                <div>
-                    <strong>Type:</strong> <span id="type">${furniture.type}</span>
+function displayBuyTable() {
+    let html = '';
+    myFurniture.forEach((furniture) => {
+        if (!furniture.sold) {  
+            html += `
+                <div class="product-wrapper">
+                    <h1>Product Details</h1>
+                    <div>
+                        <strong>Type:</strong> <span>${furniture.type}</span>
+                    </div>
+                    <div>
+                        <strong>Quality:</strong> <span>${furniture.quality}</span>
+                    </div>
+                    <div>
+                        <strong>City:</strong> <span>${furniture.city}</span>
+                    </div>
+                    <div>
+                        <strong>Price:</strong> <span>$${furniture.price}</span>
+                    </div>
+                    <div>
+                        <img class="resize-image" src="${furniture.image}" alt="Product Image">
+                    </div>
+                    <button onclick="handleBuyClick('${furniture.id}')">Order</button>
                 </div>
-                <div>
-                    <strong>Quality:</strong> <span id="quality">${furniture.quality}</span>
-                </div>
-                <div>
-                    <strong>City:</strong> <span id="city">${furniture.city}</span>
-                </div>
-                <div>
-                    <strong>Price:</strong> <span id="price">$${furniture.price}</span>
-                </div>
-                <div>
-                    <strong>Image:</strong> <img class="resize-image" id="image" src=${furniture.image} alt="Product Image">
-                </div>
-                <button onclick = "handleBuyClick('${furniture.id}')">Order</button>
-                
-            `
+            `;
         }
-    })
-    document.getElementById('app').innerHTML = html
+    });
+    document.getElementById('app').innerHTML = html;
 }
+
 
 
 function handleBuyClick(id)
