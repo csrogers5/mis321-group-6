@@ -10,20 +10,22 @@ namespace API.Models
         public int Id{get; set;}
 
         public string Username{get; set;}
+        
+        public string Email{get; set;}
 
         public string Password{get; set;}
 
         public bool Admin{get; set;}
 
-        public string FName{get; set;}
+        // public string FName{get; set;}
 
-        public string LName{get; set;}
+        // public string LName{get; set;}
 
-        public string PhoneNumber{get; set;}
+        // public string PhoneNumber{get; set;}
 
-        public string Location{get; set;}
+        // public string Location{get; set;}
 
-        public string Payment{get; set;}
+        // public string Payment{get; set;}
     }
 
     // 	account_id int auto_increment primary key,

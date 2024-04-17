@@ -9,13 +9,21 @@ namespace API.Models
     {
         public int Id{get; set;}
 
-        public int Furniture_ID{get; set;}
+        public int FurnitureId{get; set;}
 
-        public int Account_ID{get; set;}
+        public int BuyerId{get; set;}
 
         public DateTime PickupDate{get; set;}
 
-        public int Price {get; set;}
+        public int Price{get; set;}
+
+        public string FName{get; set;}
+
+        public string LName{get; set;}
+
+        public string Location{get; set;}
+
+        public string Phone{get; set;}
 
     }
 
