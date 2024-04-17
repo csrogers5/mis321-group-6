@@ -36,15 +36,19 @@ namespace API.Controllers
         // POST: api/furniture
         [EnableCors("OpenPolicy")]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Furniture value)
         {
+            IPostFurniture postObject = new PostFurniture();
+            postObject.PostFurniture(value);
         }
 
         // PUT: api/furniture/5
         [EnableCors("OpenPolicy")]
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Furniture value)
         {
+            ISellFurniture sellObject = new SellFurniture();
+            sellObject.ChangeSoldStatus(value);
         }
 
         // DELETE: api/furniture/5

@@ -82,6 +82,11 @@ async function handleOrderLoad()
     displayOrderForm()
 }
 
+async function handleSellLoad()
+{
+    await getAccountData()
+}
+
 async function getTempFurnData()
 {
     let furnTempUrl = localStorage.getItem('furnTempUrl')
@@ -138,12 +143,38 @@ function postOrder()
                 phone: document.getElementById('phoneNumber').value
             })
         });
+        putSoldFurniture()
         console.log("Account Post success")
+        window.location.href="../resources/buy.html"
     } 
     catch (error)
     {
         console.error('Error:', error);
     }
+}
+
+function putSoldFurniture()
+{
+    const furnTempUrl = furnitureUrl+"/"+tempFurn.id
+    fetch(furnTempUrl,
+    {
+        method: "PUT",
+        headers:
+        {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            id : tempFurn.id,
+            type: tempFurn.type,
+            quality: tempFurn.quality,
+            city: tempFurn.city,
+            sold: true,
+            price: tempFurn.price,
+            image: tempFurn.image,
+            sellerid: tempFurn.sellerid
+        })
+
+    })
 }
 
 function findBuyerId() 
@@ -153,25 +184,32 @@ function findBuyerId()
     return foundAccount ? foundAccount.id : null;
 }
 
-
-
-
-
-
-
-
-// public int Id{get; set;}
-
-//         public string Type{get; set;}
-
-//         public string Quality{get;set;}
-
-//         public string City{get;set;}
-
-//         public bool Sold{get; set;}
-
-//         public int Price{get;set;}
-
-//         public string Image{get; set;}
-
-//         public int SellerId{get; set;}
+function postFurniture()
+{
+    let buyerid = findBuyerId()
+    console.log(buyerid)
+    try 
+    {
+        fetch(furnitureUrl, {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                type: document.getElementById('furnitureType').value,
+                quality: document.getElementById('quality').value,
+                city: document.getElementById('pickupLocation').value,
+                sold: false,
+                price: document.getElementById('price').value,
+                image: document.getElementById('imageURL').value,
+                sellerid: buyerid
+            })
+        });
+        console.log("Furniture Post success")
+    } 
+    catch (error)
+    {
+        console.error('Error:', error);
+    }
+}
