@@ -4,6 +4,7 @@ let myOrderForms;
 const accountUrl = "http://localhost:5178/api/account"
 const furnitureUrl = "http://localhost:5178/api/furniture"
 const orderUrl = "http://localhost:5178/api/order"
+let tempFurn;
 
 async function handleBuyLoad()
 {
@@ -57,54 +58,65 @@ function displayBuyTable()
                 <div>
                     <strong>Image:</strong> <img class="resize-image" id="image" src=${furniture.image} alt="Product Image">
                 </div>
+                <button onclick = "handleBuyClick('${furniture.id}')">Order</button>
+                
             `
-            // document.getElementById("type").textContent = furniture.type;
-            // document.getElementById("quality").textContent = furniture.quality;
-            // document.getElementById("city").textContent = furniture.city;
-            // document.getElementById("price").textContent = furniture.price;
-            // document.getElementById("image").src = furniture.image;
         }
     })
     document.getElementById('app').innerHTML = html
 }
 
 
-// <body>
-//     <h1>Product Details</h1>
-//     <div>
-//         <strong>Type:</strong> <span id="type"></span>
-//     </div>
-//     <div>
-//         <strong>Quality:</strong> <span id="quality"></span>
-//     </div>
-//     <div>
-//         <strong>City:</strong> <span id="city"></span>
-//     </div>
-//     <div>
-//         <strong>Price:</strong> <span id="price"></span>
-//     </div>
-//     <div>
-//         <strong>Image:</strong> <img id="image" src="" alt="Product Image">
-//     </div>
+function handleBuyClick(id)
+{
+    console.log(id)
+    const furnTempUrl = furnitureUrl+"/"+id
+    localStorage.setItem('furnTempUrl', furnTempUrl)
+    console.log(furnTempUrl)
 
-//     <script>
-//         // Sample data
-//         const product = {
-//             Type: "Product Type",
-//             Quality: "High",
-//             City: "Example City",
-//             Price: "100",
-//             Image: "https://example.com/image.jpg"
-//         };
+    window.location.href = "../resources/order.html"
+}
 
-//         // Set the text content of the spans
-//         document.getElementById("type").textContent = product.Type;
-//         document.getElementById("quality").textContent = product.Quality;
-//         document.getElementById("city").textContent = product.City;
-//         document.getElementById("price").textContent = product.Price;
-//         document.getElementById("image").src = product.Image;
-//     </script>
-// </body>
+async function handleOrderLoad()
+{
+    await getTempFurnData()
+    displayOrderForm()
+}
+
+async function getTempFurnData()
+{
+    let furnTempUrl = localStorage.getItem('furnTempUrl')
+    console.log(furnTempUrl)
+    let response = await fetch(furnTempUrl)
+    tempFurn = await response.json()
+    console.log(tempFurn) // remove later
+}
+
+function displayOrderForm()
+{
+    let html =
+    `
+        <h1>Product Details</h1>
+        <div>
+            <strong>Type:</strong> <span id="type">${tempFurn.type}</span>
+        </div>
+        <div>
+            <strong>Quality:</strong> <span id="quality">${tempFurn.quality}</span>
+        </div>
+        <div>
+            <strong>City:</strong> <span id="city">${tempFurn.city}</span>
+        </div>
+        <div>
+            <strong>Price:</strong> <span id="price">$${tempFurn.price}</span>
+        </div>
+        <div>
+            <strong>Image:</strong> <img class="resize-image" id="image" src=${tempFurn.image} alt="Product Image">
+        </div>
+    `
+    document.getElementById('order').innerHTML = html
+}
+
+
 
 
 
