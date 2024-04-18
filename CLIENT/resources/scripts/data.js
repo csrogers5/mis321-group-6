@@ -345,12 +345,15 @@ async function showAccountSettings() {
     await getAccountData();
     await getAccount();
     const account = myAccounts.find(acc => acc.email === localStorage.getItem('email'));
-    let html = '<h3>Account Settings</h3>';
-    html += `<div><strong>Email:</strong> ${account.email}</div>`;
-    html += `<div><strong>Password:</strong> <input type="password" id="password" value="${account.password}" disabled></div>`;
-    html += `<button onclick="togglePasswordVisibility()">Show Password</button>`;
+    let html = '<div class="account-settings-box">';
+    html += '<h3 class="account-settings-title">Account Settings</h3>';
+    html += `<div class="account-settings-info"><strong>Email:</strong> ${account.email}</div>`;
+    html += `<div class="account-settings-info"><strong>Password:</strong> <input type="password" id="password" value="${account.password}" disabled></div>`;
+    html += '<button class="account-settings-button" onclick="togglePasswordVisibility()">Show Password</button>';
+    html += '</div>';
     document.getElementById('acct').innerHTML = html;
 }
+
 
 function togglePasswordVisibility() {
     const passwordInput = document.getElementById('password');
