@@ -14,7 +14,7 @@ async function getAccountData()
     myAccounts = await response.json()
     console.log(myAccounts) // remove later
 }
-// Page Routing //
+
 document.addEventListener('DOMContentLoaded', function() {
     wrapper.classList.add('active-popup');
 

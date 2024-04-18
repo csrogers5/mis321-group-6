@@ -99,7 +99,7 @@ async function getTempFurnData()
 function displayOrderForm()
 {
     let html =
-    `
+    ` <div class="product-wrapper">
         <h1>Product Details</h1>
         <div>
             <strong>Type:</strong> <span id="type">${tempFurn.type}</span>
@@ -114,8 +114,9 @@ function displayOrderForm()
             <strong>Price:</strong> <span id="price">$${tempFurn.price}</span>
         </div>
         <div>
-            <strong>Image:</strong> <img class="resize-image" id="image" src=${tempFurn.image} alt="Product Image">
+            <strong></strong> <img class="resize-image" id="image" src=${tempFurn.image} alt="Product Image">
         </div>
+    </div>
     `
     document.getElementById('order').innerHTML = html
 }
