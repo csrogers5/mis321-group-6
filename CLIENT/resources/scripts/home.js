@@ -71,11 +71,13 @@ async function fetchFurnitureData() {
 }
 
 function displayRandomFurniture() {
-    if (!myFurniture || myFurniture.length === 0) return; 
-    shuffleArray(myFurniture); 
+    if (!myFurniture || myFurniture.length === 0) return;
+    shuffleArray(myFurniture);
 
     let html = '';
-    myFurniture.forEach((furniture) => {
+    // Change the loop condition to limit the number of items displayed to 3
+    for (let i = 0; i < myFurniture.length && i < 3; i++) {
+        const furniture = myFurniture[i];
         if (!furniture.sold) {  
             html += `
                 <div class="product-wrapper">
@@ -93,7 +95,7 @@ function displayRandomFurniture() {
                 </div>
             `;
         }
-    });
+    }
     document.getElementById('app').innerHTML = html;
 }
 
