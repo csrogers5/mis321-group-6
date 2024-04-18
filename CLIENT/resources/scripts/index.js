@@ -56,13 +56,31 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 
 document.getElementById('registerForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    postAccount().then(function() {
-        console.log('postAccount executed');
-        window.location.href = 'home.html';
+    checkCrimson().then(function(crimsonCheck) {
+        console.log(crimsonCheck);
+        if (crimsonCheck === true) {
+            postAccount().then(function() {
+                console.log('postAccount executed');
+                window.location.href = 'home.html';
+            }).catch(function(error) {
+                console.error('Error in postAccount:', error);
+            });
+        }
     }).catch(function(error) {
-        console.error('Error in postAccount:', error);
+        console.error('Error in checkCrimson:', error);
     });
-});
+})
+
+function checkCrimson() {
+    return new Promise((resolve, reject) => {
+        let email = document.getElementById('remail').value;
+        if (email.includes("@crimson.ua.edu")) {
+            resolve(true);
+        } else {
+            resolve(false);
+        }
+    });
+}
 
 function checkAccount() {
     return myAccounts.some(account =>

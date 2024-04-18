@@ -121,12 +121,10 @@ function displayOrderForm()
     document.getElementById('order').innerHTML = html
 }
 
-function postOrder()
-{
-    let buyerid = findBuyerId()
-    console.log(buyerid)
-    try 
-    {
+function postOrder() {
+    let buyerid = findBuyerId();
+    console.log(buyerid);
+    try {
         fetch(orderUrl, {
             method: "POST",
             headers: {
@@ -143,13 +141,13 @@ function postOrder()
                 location: document.getElementById('pickupLocation').value,
                 phone: document.getElementById('phoneNumber').value
             })
+        })
+        .then(() => {
+            putSoldFurniture();
+            console.log("Account Post success");
+            window.location.href = "../resources/buy.html";
         });
-        putSoldFurniture()
-        console.log("Account Post success")
-        window.location.href="../resources/buy.html"
-    } 
-    catch (error)
-    {
+    } catch (error) {
         console.error('Error:', error);
     }
 }
@@ -185,12 +183,10 @@ function findBuyerId()
     return foundAccount ? foundAccount.id : null;
 }
 
-function postFurniture()
-{
-    let buyerid = findBuyerId()
-    console.log(buyerid)
-    try 
-    {
+function postFurniture() {
+    let buyerid = findBuyerId();
+    console.log(buyerid);
+    try {
         fetch(furnitureUrl, {
             method: "POST",
             headers: {
@@ -206,11 +202,12 @@ function postFurniture()
                 image: document.getElementById('imageURL').value,
                 sellerid: buyerid
             })
+        })
+        .then(() => {
+            console.log("Furniture Post success");
+            window.location.href ="../resources/buy.html"
         });
-        console.log("Furniture Post success")
-    } 
-    catch (error)
-    {
+    } catch (error) {
         console.error('Error:', error);
     }
 }
@@ -339,3 +336,4 @@ async function getAccount() {
         return null;
     }
 }
+
