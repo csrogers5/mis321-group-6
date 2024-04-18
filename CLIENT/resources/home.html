@@ -15,13 +15,30 @@
             <a href="buy.html">Purchase</a>
             <a href="sell.html">Sell</a>
             <a href="contact.html">Contact</a>
-            <button class="btnAccount-popup">Account</button>
+            <button onclick="window.location.href='account.html'" class="btnAccount-popup">Account</button>
         </nav>
     </header>
     <div class="image-container">
         <img src="" alt="Furniture Showcase" id="slideshow">
     </div>
+    <h1 class="favorite-picks">Check Out Some of Our Favorite Picks!</h1>
+    <div id="app"></div> 
+    <style>
+        .favorite-picks {
+            text-align: center;
+            color: crimson;
+        }
+    </style>
     
 <script src="./scripts/home.js"></script>
+<script>
+    window.addEventListener('scroll', function() {
+  var header = document.querySelector('header');
+  var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+  header.style.backdropFilter = `blur(${scrollPosition * 0.05}px)`;
+  header.style.transition = 'backdrop-filter 0.3s';
+});
+</script>
 </body>
 </html>

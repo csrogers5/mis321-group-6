@@ -14,7 +14,7 @@ async function getAccountData()
     myAccounts = await response.json()
     console.log(myAccounts) // remove later
 }
-// Page Routing //
+
 document.addEventListener('DOMContentLoaded', function() {
     wrapper.classList.add('active-popup');
 
@@ -56,8 +56,12 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 
 document.getElementById('registerForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    postAccount()
-    window.location.href = 'home.html'; 
+    postAccount().then(function() {
+        console.log('postAccount executed');
+        window.location.href = 'home.html';
+    }).catch(function(error) {
+        console.error('Error in postAccount:', error);
+    });
 });
 
 function checkAccount() {
@@ -67,10 +71,8 @@ function checkAccount() {
     );
 }
 
-function postAccount()
-{
-    try 
-    {
+function postAccount() {
+    return new Promise(function(resolve, reject) {
         fetch(accountUrl, {
             method: "POST",
             headers: {
@@ -83,14 +85,22 @@ function postAccount()
                 password: document.getElementById('rpassword').value,
                 admin: false
             })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log("Account Post success");
+                localStorage.setItem('email', document.getElementById('remail').value);
+                resolve(); // Resolve the promise if the request was successful
+            } else {
+                reject('Failed to post account'); // Reject the promise if the request failed
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            reject(error); // Reject the promise if there was an error
         });
-        console.log("Account Post success")
-
-        localStorage.setItem('email', document.getElementById('remail').value)
-        localStorage.setItem('username', document.getElementById('rusername').value,)
-    } 
-    catch (error)
-    {
-        console.error('Error:', error);
-    }
+    });
 }
+
+
+

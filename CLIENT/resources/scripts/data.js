@@ -82,6 +82,11 @@ async function handleOrderLoad()
     displayOrderForm()
 }
 
+async function handleSellLoad()
+{
+    await getAccountData()
+}
+
 async function getTempFurnData()
 {
     let furnTempUrl = localStorage.getItem('furnTempUrl')
@@ -94,7 +99,7 @@ async function getTempFurnData()
 function displayOrderForm()
 {
     let html =
-    `
+    ` <div class="product-wrapper">
         <h1>Product Details</h1>
         <div>
             <strong>Type:</strong> <span id="type">${tempFurn.type}</span>
@@ -109,8 +114,9 @@ function displayOrderForm()
             <strong>Price:</strong> <span id="price">$${tempFurn.price}</span>
         </div>
         <div>
-            <strong>Image:</strong> <img class="resize-image" id="image" src=${tempFurn.image} alt="Product Image">
+            <strong></strong> <img class="resize-image" id="image" src=${tempFurn.image} alt="Product Image">
         </div>
+    </div>
     `
     document.getElementById('order').innerHTML = html
 }
@@ -138,12 +144,38 @@ function postOrder()
                 phone: document.getElementById('phoneNumber').value
             })
         });
+        putSoldFurniture()
         console.log("Account Post success")
+        window.location.href="../resources/buy.html"
     } 
     catch (error)
     {
         console.error('Error:', error);
     }
+}
+
+function putSoldFurniture()
+{
+    const furnTempUrl = furnitureUrl+"/"+tempFurn.id
+    fetch(furnTempUrl,
+    {
+        method: "PUT",
+        headers:
+        {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            id : tempFurn.id,
+            type: tempFurn.type,
+            quality: tempFurn.quality,
+            city: tempFurn.city,
+            sold: true,
+            price: tempFurn.price,
+            image: tempFurn.image,
+            sellerid: tempFurn.sellerid
+        })
+
+    })
 }
 
 function findBuyerId() 
@@ -153,25 +185,159 @@ function findBuyerId()
     return foundAccount ? foundAccount.id : null;
 }
 
+function postFurniture()
+{
+    let buyerid = findBuyerId()
+    console.log(buyerid)
+    try 
+    {
+        fetch(furnitureUrl, {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                type: document.getElementById('furnitureType').value,
+                quality: document.getElementById('quality').value,
+                city: document.getElementById('pickupLocation').value,
+                sold: false,
+                price: document.getElementById('price').value,
+                image: document.getElementById('imageURL').value,
+                sellerid: buyerid
+            })
+        });
+        console.log("Furniture Post success")
+    } 
+    catch (error)
+    {
+        console.error('Error:', error);
+    }
+}
 
 
+async function handleAccountLoad()
+{
+    await getAccountData()
+    await getAccount()
+    await getFurnitureData()
+    displayAccountFurniture()
+}
+
+async function displayAccountFurniture()
+{
+    let tempAccount = await getAccount()
+    console.log(tempAccount)
+    if (tempAccount.admin === false)
+    {
+        let html = '';
+        myFurniture.forEach((furniture) => {
+        if (tempAccount.id === furniture.sellerId) {  
+            html += `
+                <div class="product-wrapper">
+                    <h1>Your Listed Item</h1>
+                    <div>
+                        <strong>Type:</strong> <span>${furniture.type}</span>
+                    </div>
+                    <div>
+                        <strong>Quality:</strong> <span>${furniture.quality}</span>
+                    </div>
+                    <div>
+                        <strong>City:</strong> <span>${furniture.city}</span>
+                    </div>
+                    <div>
+                        <strong>Price:</strong> <span>$${furniture.price}</span>
+                    </div>
+                    `
+            if(furniture.sold === true)
+            {
+                html += `<div>
+                <strong>Sold:</strong> <span>Yes</span>
+                </div>`
+            }
+            else
+            {
+                html += `<div>
+                <strong>Sold:</strong> <span>No</span>
+                </div>`
+            }
+            html+=
+            `
+            <div>
+                <img class="resize-image" src="${furniture.image}" alt="Product Image">
+                </div>
+            </div>
+            `
+        }
+    });
+    document.getElementById('acct').innerHTML = html;
+    }
+    else
+    {
+        let html = '';
+        myFurniture.forEach((furniture) => { 
+            html += `
+                <div class="product-wrapper">
+                    <h1>Client's Listed Item</h1>
+                    <div>
+                        <strong>Type:</strong> <span>${furniture.type}</span>
+                    </div>
+                    <div>
+                        <strong>Quality:</strong> <span>${furniture.quality}</span>
+                    </div>
+                    <div>
+                        <strong>City:</strong> <span>${furniture.city}</span>
+                    </div>
+                    <div>
+                        <strong>Price:</strong> <span>$${furniture.price}</span>
+                    </div>
+                    <div>
+                        <strong>Seller ID:</strong> <span>${furniture.sellerId}</span>
+                    </div>
+                    `
+            if(furniture.sold === true)
+            {
+                html += `<div>
+                <strong>Sold:</strong> <span>Yes</span>
+                </div>`
+            }
+            else
+            {
+                html += `<div>
+                <strong>Sold:</strong> <span>No</span>
+                </div>`
+            }
+            html+=
+            `
+            <div>
+                <img class="resize-image" src="${furniture.image}" alt="Product Image">
+                </div>
+            </div>
+            `
+    });
+        document.getElementById('acct').innerHTML = html;
+    }
+}
+
+async function getAccount() {
+    try {
+        let buyerid = findBuyerId();
+        let tempAccountUrl = accountUrl + "/" + buyerid;
+        let response = await fetch(tempAccountUrl);
+        let temp = await response.json();
+        let tempAccount = {
+            id: temp.id,
+            username: temp.username,
+            email: temp.email,
+            password: temp.password,
+            admin: temp.admin
+        };
+        console.log(tempAccount);
+        return tempAccount;
+    } catch (error) {
+        console.error('Error:', error);
+        return null;
+    }
+}
 
 
-
-
-
-// public int Id{get; set;}
-
-//         public string Type{get; set;}
-
-//         public string Quality{get;set;}
-
-//         public string City{get;set;}
-
-//         public bool Sold{get; set;}
-
-//         public int Price{get;set;}
-
-//         public string Image{get; set;}
-
-//         public int SellerId{get; set;}

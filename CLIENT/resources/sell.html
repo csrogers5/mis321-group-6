@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy</title>
     <link rel="stylesheet" href="./home.css">
+    
 </head>
-<body>
+<body onload="handleSellLoad()">
     <header>
         <h2 class="logo">TitleTown Furniture</h2>
         <nav class="navigation">
@@ -15,10 +16,32 @@
             <a href="buy.html">Purchase</a>
             <a href="sell.html">Sell</a>
             <a href="contact.html">Contact</a>
-            <button class="btnAccount-popup">Account</button>
+            <button onclick="window.location.href='account.html'" class="btnAccount-popup">Account</button>
         </nav>
     </header>
-    
-    
+    <form>
+        <label for="furnitureType">Furniture Type:</label><br>
+        <input type="text" id="furnitureType" name="furnitureType"><br>
+      
+        <label for="quality">Quality:</label><br>
+        <input type="text" id="quality" name="quality"><br>
+      
+        <label for="pickupLocation">Pickup Location:</label><br>
+        <select id="pickupLocation" name="pickupLocation" required>
+          <option value="Tuscaloosa">Tuscaloosa</option>
+          <option value="Birmingham">Birmingham</option>
+          <option value="Huntsville">Huntsville</option>
+          <option value="Florence">Florence</option>
+        </select><br>
+      
+        <label for="price">Price:</label><br>
+        <input type="number" id="price" name="price"><br>
+      
+        <label for="imageURL">Image URL:</label><br>
+        <input type="url" id="imageURL" name="imageURL"><br><br>
+      
+        <button onclick="postFurniture()" type="button">Submit</button>
+      </form>
 </body>
+<script src="./scripts/data.js"></script>
 </html>
