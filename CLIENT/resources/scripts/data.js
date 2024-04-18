@@ -44,7 +44,7 @@ function displayBuyTable() {
                         <strong>Type:</strong> <span>${furniture.type}</span>
                     </div>
                     <div>
-                        <strong>Quality:</strong> <span>${furniture.quality}</span>
+                        <strong>Condition:</strong> <span>${furniture.quality}</span>
                     </div>
                     <div>
                         <strong>City:</strong> <span>${furniture.city}</span>
@@ -105,7 +105,7 @@ function displayOrderForm()
             <strong>Type:</strong> <span id="type">${tempFurn.type}</span>
         </div>
         <div>
-            <strong>Quality:</strong> <span id="quality">${tempFurn.quality}</span>
+            <strong>Condition:</strong> <span id="quality">${tempFurn.quality}</span>
         </div>
         <div>
             <strong>City:</strong> <span id="city">${tempFurn.city}</span>
@@ -241,7 +241,7 @@ async function displayAccountFurniture()
                         <strong>Type:</strong> <span>${furniture.type}</span>
                     </div>
                     <div>
-                        <strong>Quality:</strong> <span>${furniture.quality}</span>
+                        <strong>Condition:</strong> <span>${furniture.quality}</span>
                     </div>
                     <div>
                         <strong>City:</strong> <span>${furniture.city}</span>
@@ -284,7 +284,7 @@ async function displayAccountFurniture()
                         <strong>Type:</strong> <span>${furniture.type}</span>
                     </div>
                     <div>
-                        <strong>Quality:</strong> <span>${furniture.quality}</span>
+                        <strong>Condition:</strong> <span>${furniture.quality}</span>
                     </div>
                     <div>
                         <strong>City:</strong> <span>${furniture.city}</span>
@@ -342,6 +342,8 @@ async function getAccount() {
 }
 
 async function showAccountSettings() {
+    await getAccountData();
+    await getAccount();
     const account = myAccounts.find(acc => acc.email === localStorage.getItem('email'));
     let html = '<h3>Account Settings</h3>';
     html += `<div><strong>Email:</strong> ${account.email}</div>`;
