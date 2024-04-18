@@ -234,3 +234,73 @@ color: whitesmoke
 .wrapper.active-popup{
     transform: scale(1);
 }
+.navigation .btnAccount-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid crimson;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: crimson;
+    font-weight: 500;
+    margin-left: 50px;
+    transition: .5s;
+}
+
+.navigation .btnAccount-popup:hover{
+background: crimson;
+color: white;
+}
+.sellstf-container {
+    display: flex;
+    justify-content: center;
+    background-color: whitesmoke;
+}
+
+.sellstf-box {
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+
+.form-box {
+    margin-bottom: 20px;
+}
+
+.form-box label {
+    font-weight: bold;
+    color: crimson;
+    font-size: 16px;
+}
+
+.form-box input,
+.form-box select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid white;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.form-box button {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid crimson; 
+    background-color: white;
+    color: crimson;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.form-box button:hover {
+    background-color: crimson;
+    color: white;
+}

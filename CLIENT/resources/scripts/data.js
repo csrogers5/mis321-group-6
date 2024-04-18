@@ -93,7 +93,7 @@ async function getTempFurnData()
     console.log(furnTempUrl)
     let response = await fetch(furnTempUrl)
     tempFurn = await response.json()
-    console.log(tempFurn) // remove later
+    console.log(tempFurn) 
 }
 
 function displayOrderForm()
@@ -145,6 +145,7 @@ function postOrder() {
         .then(() => {
             putSoldFurniture();
             console.log("Account Post success");
+            alert("Order submitted successfully!");
             window.location.href = "../resources/buy.html";
         });
     } catch (error) {
@@ -205,6 +206,7 @@ function postFurniture() {
         })
         .then(() => {
             console.log("Furniture Post success");
+            alert("Congrats On Posting!");
             window.location.href ="../resources/buy.html"
         });
     } catch (error) {
@@ -212,13 +214,15 @@ function postFurniture() {
     }
 }
 
+async function handleAccountLoad() {
+    await getAccountData();
+    await getAccount();
+    await getFurnitureData();
+    displayAccountFurniture();
+}
 
-async function handleAccountLoad()
-{
-    await getAccountData()
-    await getAccount()
-    await getFurnitureData()
-    displayAccountFurniture()
+async function handlePageLoad() {
+    await handleAccountLoad();
 }
 
 async function displayAccountFurniture()
@@ -337,3 +341,20 @@ async function getAccount() {
     }
 }
 
+async function showAccountSettings() {
+    const account = myAccounts.find(acc => acc.email === localStorage.getItem('email'));
+    let html = '<h3>Account Settings</h3>';
+    html += `<div><strong>Email:</strong> ${account.email}</div>`;
+    html += `<div><strong>Password:</strong> <input type="password" id="password" value="${account.password}" disabled></div>`;
+    html += `<button onclick="togglePasswordVisibility()">Show Password</button>`;
+    document.getElementById('acct').innerHTML = html;
+}
+
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById('password');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
+    }
+}

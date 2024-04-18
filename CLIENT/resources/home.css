@@ -91,20 +91,18 @@ color: white;
     object-fit: cover; 
 }
 
-/* This goes inside your home.css file */
 
-/* Set a max width for each product and add some margin */
 .product-wrapper {
-    max-width: 300px; /* Adjust this value as needed */
-    margin: 0 auto; /* This centers the product in the space it has */
-    padding: 1em; /* This adds space inside the product wrapper */
+    max-width: 300px; 
+    margin: 0 auto; 
+    padding: 1em; 
 }
 
-/* Use a flex container to handle the layout of product wrappers */
+
 #app {
     display: flex;
-    justify-content: space-around; /* This spaces out the items evenly */
-    flex-wrap: wrap; /* This allows items to wrap onto the next line */
+    justify-content: space-around; 
+    flex-wrap: wrap; 
 }
 
 
@@ -118,12 +116,10 @@ color: white;
     width: calc(25% - 22px);
     box-shadow: 0 4px 8px rgba(244, 0, 0, 0.1);
     display: flex;
-    flex-direction: column; /* Keep this to align items in a column */
-    align-items: center; /* Center items horizontally */
+    flex-direction: column;
+    align-items: center; 
     text-align: center; 
-    /* Add to ensure the content justifies correctly */
     justify-content: space-between; 
-    /* Ensures that the wrapper grows as needed to fill the flex container */
     min-height: 0;
 }
 
@@ -137,17 +133,14 @@ color: white;
     margin-bottom: 10px;
     color: crimson;
     font-size: 18px; 
-    /* This will prevent div from pushing other elements down */
     display: flex;
     flex-direction: column;
 }
 
 .resize-image {
-    /* Removed fixed height to allow image to scale with width */
-    width: 100%; /* Make the image responsive to the width of its container */
-    object-fit: contain; /* This will ensure the image maintains its aspect ratio */
-    /* Removed fixed width to allow responsiveness */
-    margin-bottom: auto; /* This will push everything below it to the bottom */
+    width: 100%; 
+    object-fit: contain; 
+    margin-bottom: auto; 
 }
 
 .product-wrapper button {
@@ -161,6 +154,34 @@ color: white;
     font-size: 16px;
     cursor: pointer;
     border-radius: 4px;
-    width: 100%; /* Makes the button full width */
-    margin-top: auto; /* This will push the button to the bottom */
+    width: 100%; 
+    margin-top: auto; 
 }
+
+.weird-button-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.weird-button-container .weird-button-wrapper {
+    text-align: center;
+}
+
+.weird-button {
+    background-color: white;
+    color: crimson;    
+    padding: 20px 40px;
+    font-size: 24px;
+    border: 2px solid crimson;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 10px; 
+}
+
+.weird-button:hover {
+    background-color: crimson;
+    color: white;
+}
+

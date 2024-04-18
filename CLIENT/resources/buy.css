@@ -35,7 +35,6 @@
     margin-bottom: 10px;
     color: crimson;
     font-size: 18px; 
-    /* This will prevent div from pushing other elements down */
     display: flex;
     flex-direction: column;
 }

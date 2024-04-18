@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buy</title>
-    <link rel="stylesheet" href="./home.css">
+    <title>TTF-Order</title>
+    <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./order.css">
 </head>
 <body onload="handleOrderLoad()">
@@ -32,10 +32,10 @@
       </head>
       <body>
 <div id="app">
-    <div id="order" class="product-wrapper" style="flex: 1;">
+    <div id="order" class="product-wrapper">
         <h1>Order Form</h1>
         <form>
-            <div>
+            <div class="order-form">
                 <label for="creditCard">Credit Card Number:</label>
                 <input type="text" id="creditCard" name="creditCard" placeholder="Enter card number" required>
             </div>
@@ -49,6 +49,7 @@
                     <option value="Florence">Florence</option>
                 </select>
             </div>
+            </form>
 
             <div>
                 <label for="datePicker">Select a date:</label>

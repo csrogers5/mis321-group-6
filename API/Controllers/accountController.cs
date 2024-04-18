@@ -23,6 +23,7 @@ namespace API.Controllers
             IGetAllAccounts readObject = new ReadAccountData();
             return readObject.GetAllAccounts();
         }
+        
 
         // GET: api/account/5
         [EnableCors("OpenPolicy")]

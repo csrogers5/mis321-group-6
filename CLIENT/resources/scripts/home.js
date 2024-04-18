@@ -75,7 +75,6 @@ function displayRandomFurniture() {
     shuffleArray(myFurniture);
 
     let html = '';
-    // Change the loop condition to limit the number of items displayed to 3
     for (let i = 0; i < myFurniture.length && i < 3; i++) {
         const furniture = myFurniture[i];
         if (!furniture.sold) {  
