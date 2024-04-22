@@ -260,6 +260,7 @@ async function displayAccountFurniture()
             {
                 html += `<div>
                 <strong>Sold:</strong> <span>No</span>
+                <button onclick="deleteFurniture('${furniture.id}')">🗑️</button>
                 </div>`
             }
             html+=
@@ -300,12 +301,14 @@ async function displayAccountFurniture()
             {
                 html += `<div>
                 <strong>Sold:</strong> <span>Yes</span>
+                <button onclick="deleteFurniture('${furniture.id}')">🗑️</button>
                 </div>`
             }
             else
             {
                 html += `<div>
                 <strong>Sold:</strong> <span>No</span>
+                <button onclick="deleteFurniture('${furniture.id}')">🗑️</button>
                 </div>`
             }
             html+=
@@ -362,4 +365,25 @@ function togglePasswordVisibility() {
     } else {
         passwordInput.type = 'password';
     }
+}
+
+
+function deleteFurniture(id) {
+    fetch(furnitureUrl + "/" + id, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to delete furniture');
+        }
+        alert('Furniture successfully deleted!');
+        location.reload();
+    })
+    .catch(error => {
+        console.error('Error deleting furniture:', error);
+        // Optionally, handle the error, such as displaying an error message to the user
+    });
 }
