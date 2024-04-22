@@ -56,6 +56,8 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            IDeleteData deleteObject = new DeleteData();
+            deleteObject.DeleteData(id);
         }
     }
 }
