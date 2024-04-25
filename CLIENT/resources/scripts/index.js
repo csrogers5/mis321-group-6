@@ -65,11 +65,14 @@ document.getElementById('registerForm').addEventListener('submit', function(even
             }).catch(function(error) {
                 console.error('Error in postAccount:', error);
             });
+        } else {
+            alert('Please register with a Crimson email.');
         }
     }).catch(function(error) {
         console.error('Error in checkCrimson:', error);
     });
-})
+});
+
 
 function checkCrimson() {
     return new Promise((resolve, reject) => {
